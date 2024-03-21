@@ -35,7 +35,7 @@ if(mysqli_connect_error()) {
 
                 else    {
                     $page = preg_replace('/[^0-9a-zA-Z]-/', '', $_REQUEST ['page']);
-                    include("contant/$page.php");
+                    include("content/$page.php");
                 }
 
             ?>
