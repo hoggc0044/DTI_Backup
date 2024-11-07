@@ -21,8 +21,5 @@ echo "Appropriate Cost Found: " . $cost."<br />";
 
 echo "Password Hash: ".$hashed
 
-    
-
-
 
 ?>
