@@ -1,9 +1,13 @@
-<h2>Welcome</h2>
+<h2>WELCOME MOIT</h2>
             
             <p>
-                Please use the 'quick search' area to find quotes.  It will give results if your search term is in the quote or author name.  It will also find quotes related to a subject (try typing in something like 'love' or 'live').
-            </p>
-
+              Welcome to my site! This site holds all (or most) of the known cat breed in the world!
+			</p>
+            
             <p>
-                You can also browse by most recent quote or click the 'random' link to get the system to generate ten quotes for you.
+				To get started, simply click on "all entries". This will display all of the current entries in the database. You can also view our most recent entries, and our random entries. Alternatively, if you're wanting a specific breed or temperament, you can use the quicksearch located in the top right. Select All, Temperament, or Breed to search in those categories.
+            </p>
+            
+            <p>
+
             </p>

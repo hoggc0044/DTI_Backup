@@ -12,12 +12,9 @@ body {
     background-color: #ddd;
 }
 
-
 /* Set up grids... specifics */
 
 /*  #### Grid for Main page #### */
-
-
 .wrapper {
     display: grid;
     grid-template-columns: auto;
@@ -28,7 +25,6 @@ body {
         "main"
         "footer";
         grid-gap: 4px;
-    
 }
 
 .banner {
@@ -37,7 +33,7 @@ body {
 
 .nav {
     grid-area: nav;
-    background-color: #60A3D9; /*Blue Grotto*/
+    background-color: #876648; /*Shadow*/
     color: rgb(255,255,255);
     font-family: 'Raleway', sans-serif;
     font-size: 150%;
@@ -48,33 +44,39 @@ body {
 
 .main {
     grid-area: main;
-    background-color: #BFD7ED; /*Baby Blue*/
+    background-color: #E0D1C6; /*Wafer*/
     font-family: 'Raleway', sans-serif;
     border: solid 1px #CCC;
 }
-
 
 .footer {
     grid-area: footer;
     text-align: right;
     padding: 20px;
+    background-color: #452F1F; /*Iroko*/
+    border: solid 1px #bbb;
+    font-family: 'Roboto', sans-serif;
+    color: rgb(255,255,255);
 }
 
-.quicksearch{
-    border-radius: 5px 0 0 5px;
+.linkwrapper {
+    display: grid;
+    grid-template-columns: 3fr 2fr 1fr;
+    grid-template-areas: 
+        "commonsearches topsearch topadmin dropdown";
+    grid-gap: 4px;
+}
+
+.quicksearch {
+    border-radius: 5px 0 0 5px; 
     display: inline-block;
 }
 
-/*  #### Grid for Navigation area page #### */
-@media only screen and (max-width: 1175px){
-    .linkwrapper {
-        display: grid;
-        grid-template-columns: 3fr 2fr 1fr;
-        grid-template-areas: 
-            "commonsearches topsearch topadmin";
-        grid-gap: 4px;
-    }
+.quick-choose{
+    padding: 10px;
+    border: solid 1px #000
 }
+
 
 .commonsearches {
     grid-area: commonsearches;
@@ -86,6 +88,19 @@ body {
     text-align: right;
 }
 
+.dropdown {
+    grid-area: dropdown;
+    max-width: 600px;
+    margin: auto;
+}
+.custom-dropdown {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
+
 .topadmin {
     grid-area: topadmin;
     text-align: center;
@@ -93,34 +108,96 @@ body {
 
 /* ### Additional div styling (put colours / corners here) */
 
-
 /* Area colouring... */
 
 /* logo, banner and footer background are the same */
-.banner, .footer {
-    background-color: rgb(0, 48, 97); /*Navy*/
+.banner{
+    background-color: #AB1320; /*Tamarillo*/
     border: solid 1px #bbb;
     font-family: 'Roboto', sans-serif;
     color: rgb(255,255,255);
 }
 
 /* #### Links Styling  #### */
-
 /* Navigation Links */
 a.topnav {font-weight: bold;}
-a.topnav:link, a.topnav:visited {color: #007c72;} /*dark teal */
-a.topnav:hover {color: #707a00; text-decoration: none;} 
-
+a.topnav:link, a.topnav:visited {color: #E0D1C6;} /*dark teal */
+a.topnav:hover {color: #ffe08b; text-decoration: none;} 
 
 /* links in page */
 a {font-weight: bold;}
-a:link{color: #007c72;} /* dark teal */
-a:visited{color: #222;} /* dark grey */
-a:hover{color: #707a00;}    /* Dark Green*/
+a:link{color: #E0D1C6;} /* dark teal */
+a:visited{color: #AB1320;} /* dark grey */
+a:hover{color: #ffe08b;}    /* Dark Green*/
+
+.results {
+    background-color: #fff;
+    border: 1px solid #AB1320;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
 /* #### Headings / text styling #### */
-h1, h2, h3, h4 {
-    font-family: 'Ubuntu', sans-serif;
+.h1 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+}
+
+h2, h3 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+h4 {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.important {
+    background-color: rgb(160, 0, 0);
+    padding: 10px;
+    border-radius: 10px;
+    border-style: inset;
+    border-width: 3px;
+    border-color: #fff;
+    color: #fff;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+    font-style: bold;
+    font-size: 18px;
+}
+
+.important2 {
+    background-color: rgb(160, 0, 0);
+    padding: 5px;
+    border-radius: 5px;
+    border-style: inset;
+    border-width: 1px;
+    border-color: #fff;
+    color: #fff;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+    font-style: bold;
+}
+
+.light_blue {
+    background-color: rgb(0, 97, 60);
+    padding: 10px;
+    border-radius: 10px;
+    border-style: inset;
+    border-width: 3px;
+    border-color: #fff;
+    color: #fff;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+    font-style: bold;
+    font-size: 14px;
 }
 
 .sub_heading {
@@ -131,15 +208,44 @@ h1, h2, h3, h4 {
 
 /* ### Form / Search  Styling #### */
 
-.no-results {
+.tag {
     padding: 5px;
-    background-color: #ffbbbb;
-    border: solid 1px #a40f0f
+    padding-left: 10px;
+    padding-right: 10px;
+    border: solid 1px #000;
+    border-radius: 5px;
+}
+
+.subject-tag {
+    background-color: bisque;
+}
+
+.white-tag {
+    background-color: #fff;
+}
+
+.no-results {
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #fff;
+    background-color: rgb(231, 77, 77);
+    border: solid 1px rgb(160, 0, 0);
+    border-radius: 5px;
+}
+
+.error {
+    padding: 5px;
+    padding-right: 5px;
+    color: #fff;
+    background-color: rgb(231, 77, 77);
+    border: solid 1px rgb(160, 0, 0);
+    border-radius: 5px;
 }
 
 
 form {
     width: 100%;
+    padding: 10px;
 }
 
 .search {
@@ -167,9 +273,30 @@ form {
     padding: 10px;
 }
 
+.tools {
+    text-align: right;
+    padding-right: 20px;
+}
 
 input[type="submit"]:hover {
     background-color: #000;
+    color: #fff;
+}
+
+.admin-form {
+    max-width: 600px;
+    margin: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
+
+.form-submit {
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 
@@ -179,18 +306,19 @@ input {
     display: inline-block;
     border: 1px solid #000;
     box-sizing: border-box; 
+    width: 100%;
+    border-radius: 5px;
 }
 
-
-.quicksearch {
-    border-radius: 5px 0 0 5px; 
-    display: inline-block;
+.review {
+    background-color: #fff;
+    border: 1px solid #AB1320;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.quick-choose{
-    padding: 10px;
-    border: solid 1px #000
-}
 
 /* alleged reules for navigation on smaller screens */
 @media only screen and (max-width: 1175px) {
@@ -199,7 +327,8 @@ input {
         grid-template-rows: auto;
         grid-template-areas: 
         "commonsearches topadmin"
-        "topsearch topsearch";
+        "topsearch topsearch"
+        "dropdown";
     }
 
     /* Adjust alignment of content on smaller screens */
@@ -209,6 +338,10 @@ input {
     }
 
     .topsearch{
+        width: 100%;
+        text-align: left;
+    }
+    .dropdown{
         width: 100%;
         text-align: left;
     }

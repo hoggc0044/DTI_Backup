@@ -1,55 +1,47 @@
 <?php
 
-// retrive search type
-$search_type = $_REQUEST['search'];
-
-echo "Search type".$search_type;
+// retrieve search type..
+$search_type = $_REQUEST['search']; 
 
 if ($search_type == "all") {
-    $heading = "All Results";
+    $heading = "All Results ";
     $sql_conditions = "";
 }
 
 elseif($search_type == "recent") {
-    $heading = "Recent Quotes";
-    $sql_conditions = "ORDER BY RAND() LIMIT 10";
+    $heading = "Recent Entries";
+    $sql_conditions = "ORDER BY c.Cat_Char_ID DESC LIMIT 15";
 }
 
 elseif($search_type == "random") {
-    $heading = "Random Quotes";
-    $sql_conditions = "ORDER BY q.ID DESC LIMIT 10";
+    $heading = "Random Entries";
+    $sql_conditions = "ORDER BY RAND() LIMIT 15";
 }
 
-elseif ($search_type=="author") {
-    // retrieve author ID
-    $author_ID = $_REQUEST['Author_ID'];
+elseif($search_type == "temperament") {
+    // retrieve temrapment
+    $Temperament_name = $_REQUEST['Temperament_name'];
 
     $heading = "";
-    $heading_Type = "author";
-
-    $sql_conditions = "WHERE q.Author_ID = $author_ID";
-}
-
-elseif ($search_type=="subject") {
-    // retrieve subject
-    $subject_name = $_REQUEST['subject_name'];
-
-    $heading = "";
-    $heading_Type = "subject";
+    $heading_type = "temperament";
 
     $sql_conditions = "
-    WHERE
-    s1.Subject '$subject_name'
-    OR s2.Subject '$subject_name'
-    OR s3.Subject '$subject_name'
+    WHERE 
+    t1.Temperament = '$Temperament_name'
+    OR t2.Temperament = '$Temperament_name'
+    OR t3.Temperament = '$Temperament_name'
+    OR t4.Temperament = '$Temperament_name'
+    OR t5.Temperament = '$Temperament_name'
     ";
 }
 
 else {
-    $heading = "No results test";
-    $sql_conditions = "WHERE q.ID = 1000";
+    $heading = "No Results";
+    $sql_conditions = "WHERE c.Cat_Char_ID = 1000";
 }
 
-include ("results.php")
+include (
+    "results.php"
+);
 
 ?>

@@ -3,140 +3,113 @@
 $all_results = get_data($dbconnect, $sql_conditions);
 
 $find_query = $all_results[0];
-$find_count = $all_results[2];
+$find_count = $all_results[1];
 
 if($find_count == 1) {
     $result_s = "Result";
+} 
+
+else {
+    $result_s = "Results";
 }
 
-else {$result_s = "Results";}
+// check that we have results
+if ($find_count > 0) {
 
-// Check that we have results
- if($find_count > 0) {
+    if ($heading != "") {
+        $heading = "<h2>$heading ($find_count $result_s)</h2>";
+    } elseif ($heading_type == "Temperament") {
+        $Temperament_name = ucwords($Temperament_name);
+        $heading = "<h2>$Temperament_name Breeds ($find_count $result_s)</h2>";
+    }
 
-// }
+    echo $heading;
 
-// q => quotes table
-// a => author table
-// s => s1, s2, ad s3 are subjects
+    while ($find_rs = mysqli_fetch_assoc($find_query)) {
+        $Cat_Char_ID = $find_rs['Cat_Char_ID'];
+        
+        $breed_name = $find_rs['BreedName'];
 
-// $find_sql = "SELECT 
+        $alt_breed_name = $find_rs['AltBreedName'];
 
-// 	q.*,
-// 	a.*
+        $Temperament_1 = $find_rs['Temperament1'];
+        $Temperament_2 = $find_rs['Temperament2'];
+        $Temperament_3 = $find_rs['Temperament3'];
+        $Temperament_4 = $find_rs['Temperament4'];
+        $Temperament_5 = $find_rs['Temperament5'];
 
-// 	FROM Quotes q
-// 	JOIN Author a ON a.Author_ID = q.Author_ID
-// 	JOIN All_Subjects s1 ON q.Subject1_ID = s1.Subject_ID
-// 	JOIN All_Subjects s2 ON q.Subject2_ID = s2.Subject_ID
-// 	JOIN All_Subjects s3 ON q.Subject3_ID = s3.Subject_ID
+        $avg_kitten_price = $find_rs['AvgKittenPrice'];
 
+        // put Temperaments into list to iterate through it
+        $all_Temperaments = array($Temperament_1, $Temperament_2, $Temperament_3, $Temperament_4, $Temperament_5);
 
+?>
 
-// ";
-// $find_query = mysqli_query($dbconnect, $find_sql);
-// $find_rs = mysqli_fetch_assoc($find_query);
-// $find_count = mysqli_num_rows($find_query);
-
-if($heading != "" ) {
-    $heading = "<h2>$heading ($find_count $result_s)</h2>";
-}
-
-elseif ($heading_Type=="author"){
-    // retrieve author name
-    $author_rs = get_item_name($dbconnect, 'author', 'Author_ID',
-    $author_ID);
-
-    $author_name = $author_rs['First']." ".$author_rs['Middle']." ".
-    $author_rs['Last'];
-
-    $author_name = "Someone";
-    $heading = "<h2>$author_name Quotes ($find_count $result_s)</h2>";
-}
-
-elseif ($heading_type=="subject") {
-    $subject_name = ucwords($subject_name);
-    $heading = "<h2>$subject_name Quotes ($find_count $result_s)</h2>";
-}
+        <div class="results">
+            <?php echo '<span style="font-size: 20px; font-family: \'Roboto\', sans-serif; font-weight: bold;">' . $breed_name . '</span>'; ?> <br>
+            <?php echo '<span style="font-size: 17px; font-family: \'Raleway\', sans-serif; font-style: italic;">Alt name: ' . $alt_breed_name . '</span>'; ?>
 
 
 
-echo $heading;
-
-while($find_rs = mysqli_fetch_assoc($find_query)) {
-    $quote = $find_rs['Quote'];
-
-    $author_first = $find_rs['First'];
-    $author_middle = $find_rs['Middle'];
-    $author_last = $find_rs['Last'];
-
-    // Create full name of author
-    $author_full = $find_rs['Full_Name']
-
-    // get author ID for clickable author link
 
 
-    ?>
-
-    <div class="results">
-        <?php echo $quote; ?>
-
-        <p><i>
-            <a href="index.php?page=all_results&search=author>
-            Author_ID=<?php echo $author_ID; ?>">
-                <?php echo $author_full; ?>
-            </a>
-        </i></p>
-
-        <p>
-        <?php
-        // iterate through all_subjects list and output subject if it is not blank
-
-        // Set up subject array!!
-
-        // Get subject ID's
-        $sub1_ID = $find_rs['Subject1_ID'];
-        $sub2_ID = $find_rs['Subject2_ID'];
-        $sub3_ID = $find_rs['Subject3_ID'];
-
-        $all_subjects = array($sub1_ID, $sub2_ID, $sub3_ID);
-
-        // You need to look up the subjects associated with each ID.
-
-        foreach ($all_subjects as $subject) {
-            // check the subject is not "n/a"
-            if ($subject != "n/a") {
-                
-                ?>
-                <span class="tag">
-                    <a href="index.php?page=all_results&search=subject&
-                    subject_name=<?php echo $subject; ?>">
-                        <?php echo $subject;?>
-                    </a>
-                </span>
-                &nbsp; &nbsp;
-
+            <p>
                 <?php
-            }
 
-        }
+                // iterate through all Temperaments list and output if not blank
+
+                foreach ($all_Temperaments as $Temperament) {
+                    // ensure Temperament is not "n/a"
+                    if ($Temperament != "n/a") {
+
+                ?>
+                        <span class="tag">
+                            <a href="index.php?page=all_results&search=Temperament&Temperament_name=<?php echo $Temperament; ?>">
+                                <?php echo $Temperament; ?>
+                            </a>
+                        </span>
+                        &nbsp;&nbsp;
+
+                    <?php
+
+                    }
+                }
+
+                // if the user is logged in, show edit / delete options
+                if (isset($_SESSION['admin'])) {
+                    ?>
+            <div class="tools">
+                <a href="index.php?page=../admin/edit_entry&Cat_Char_ID=<?php echo $Cat_Char_ID; ?>"><i class="fa fa-edit fa-2x"></i></a> &nbsp; &nbsp;
+                <a href="index.php?page=../admin/delete_confirm&Cat_Char_ID=<?php echo $Cat_Char_ID; ?>"><i class="fa fa-trash fa-2x"></i></a>
+            </div>
+        <?php
+                }
+
         ?>
         </p>
 
-    </div>
+        </div>
 
-    <br />
+        <br />
+
     <?php
 
-} // end of while loop
+    } // while statement
 
-} // end of 'have results'
+} // check results
 
+// if there are no results show an error message
+else {
 
-// we have not results!
-else{
-?>
-    <p>Oops - nothing to see here.</p>
+    ?>
+
+    <h2> Oops...</h2>
+
+    <div class="no-results">
+        Doesn't look like we were able to find results for your search. Please check your search term and try again.
+    </div>
+    <br />
+
 <?php
 
 }
