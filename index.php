@@ -24,7 +24,7 @@ if(mysqli_connect_error()) {
     
     <div class="wrapper">
         
-    <?php include("content/banner_navigation.php"); ?>
+    <?php include("content/banner_nav.php"); ?>
         
         <div class="box main">
             <?php
@@ -46,4 +46,4 @@ if(mysqli_connect_error()) {
     
     </div>  <!-- / wrapper  -->
     
-</body>        
+</body>    
